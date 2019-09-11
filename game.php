@@ -1,14 +1,17 @@
 <?php
-    //session_start();
+    session_start();
     //include('tablero.php');
     $_SESSION['tablero'] = $_POST['length'];
-    //$init = new Game();
+    //echo $_SESSION['tablero'];
+    //$init = new Game();\
+
     if(isset($_SESSION['tablero'])){
         $_SESSION['conf'] = true;
-        header('location:http://localhost/Game/game.php');
+        header('location:http://localhost/Bridge/game.php');
     }else{
-        if($_SESSION['conf'] == false) header('location:http://localhost/Game');
+        if($_SESSION['conf'] == false) header('location:http://localhost/Bridge');
     }
+
 ?>
 <!doctype html>
 <html lang="en">
