@@ -1,12 +1,24 @@
 <?php
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+
     session_start();
 
     $error = '';
 
     if(isset($_POST['submit'])){
-        $nameA = $_POST['name-a'];
-        $nameB = $_POST['name-b'];
-        $tam = $_POST['length'];
+        //$nameA = $_POST['name-a'];
+        //$nameB = $_POST['name-b'];
+        //$tam = $_POST['length'];
+
+
+        $_SESSION['nombreA'] = $_POST['name-a'];
+        $_SESSION['nombreB'] = $_POST['name-b'];
+        $_SESSION['tablero'] = $_POST['length'];
+        header("location:game.php");
+
+        //$_SESSION['validar'] = true;
 
         if(empty($nameA)){
             $error .= 'Ingrese nombre del Jugador A <br/>';
@@ -25,7 +37,9 @@
         }else{
             require 'view.php';
         }
+
     }else{
         require 'view.php';
     }
+
 ?>

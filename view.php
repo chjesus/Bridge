@@ -11,7 +11,7 @@
 <header>
     <form action="index.php" method="POST">
         <div class="title">
-            <h1>Ingrese los datos.</h1>
+            <h1>Ingrese los datos</h1>
         </div>
         <div class="container">
             <input type="text" name="name-a" id="name-a" placeholder="Nombre del Jugador A" value="<?php if(isset($nameA)) echo $nameA; ?>">
