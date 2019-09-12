@@ -49,9 +49,9 @@
     <?php
 
         // tab es objeto de clase tablero
-        $tab = New tablero();
-        $tab->crearTablero($_SESSION["tablero"]);
-        $tab->imprimirTablero($_SESSION["tablero"]); 
+        $tab = New tablero($_SESSION["tablero"],0);
+        $tab->crearTablero();
+        $tab->imprimirTablero(); 
 
     ?>
 

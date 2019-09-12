@@ -8,17 +8,11 @@
     $error = '';
 
     if(isset($_POST['submit'])){
-        //$nameA = $_POST['name-a'];
-        //$nameB = $_POST['name-b'];
-        //$tam = $_POST['length'];
-
 
         $_SESSION['nombreA'] = $_POST['name-a'];
         $_SESSION['nombreB'] = $_POST['name-b'];
         $_SESSION['tablero'] = $_POST['length'];
         header("location:game.php");
-
-        //$_SESSION['validar'] = true;
 
         if(empty($nameA)){
             $error .= 'Ingrese nombre del Jugador A <br/>';
