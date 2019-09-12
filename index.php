@@ -12,24 +12,25 @@
         $_SESSION['nombreA'] = $_POST['name-a'];
         $_SESSION['nombreB'] = $_POST['name-b'];
         $_SESSION['tablero'] = $_POST['length'];
-        header("location:game.php");
 
-        if(empty($nameA)){
+        if(empty($_SESSION['nombreA'])){
             $error .= 'Ingrese nombre del Jugador A <br/>';
         }
-        if(empty($nameB)){
+        if(empty($_SESSION['nombreB'])){
             $error .= 'Ingrese nombre del Jugador B <br/>';
         }
-        if(empty($tam)){
+        if(empty($_SESSION['tablero'])){
             $error .= 'Ingrese el tamano <br/>';
         }
-        if(!empty($tam) && $tam%2 == 0){
+        if(!empty($_SESSION['tablero']) && ($_SESSION['tablero'])%2 == 0){
             $error .= 'Ingrese un valor impar para el tamano del tablero';
         }
-        if(!empty($nameA) && !empty($nameB) && !empty($tam) && $tam%2 == 1){
-            require 'game.php';
+        if(!empty($_SESSION['nombreA']) && !empty($_SESSION['nombreB']) && !empty($_SESSION['tablero']) && ($_SESSION['tablero'])%2 == 1){
+            header("location:game.php");
+            
         }else{
             require 'view.php';
+            
         }
 
     }else{

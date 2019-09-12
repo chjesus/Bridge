@@ -44,18 +44,27 @@
 </head>
 <body>
 
-    <?php echo "Jugador A:",$_SESSION["nombreA"],"<br>","Jugador B:",$_SESSION["nombreB"], "<br>", "Tamano del tablero:",$_SESSION["tablero"],"<br>" ; ?>
+    <div class="jugadorA">
+        <?php echo "Jugador A:",$_SESSION["nombreA"],"<br>"?>
+    </div>
+    
+    <div class="jugadorB">
+        <?php echo "Jugador B:",$_SESSION["nombreB"],"<br>"?>
+    </div>
+  
+    
+    <div class="proceso">
+        <?php
 
-    <?php
+            // tab es objeto de clase tablero
+            $tab = New tablero($_SESSION["tablero"],0);
+            $tab->crearTablero();
+            $tab->imprimirTablero(); 
 
-        // tab es objeto de clase tablero
-        $tab = New tablero($_SESSION["tablero"],0);
-        $tab->crearTablero();
-        $tab->imprimirTablero(); 
+        ?>
+    </div>
 
-    ?>
-
-    <div><a href="cerrar.php" >Iniciar juego nuevo</a></div>
+    <div><a href="cerrar.php" class="juegoNuevo" >Iniciar juego nuevo</a></div>
 
 
 </body>
