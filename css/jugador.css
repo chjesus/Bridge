@@ -27,11 +27,37 @@ body{
 .container{
     display: flex;
     background-color: #17202A;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
 }
+.container-tablero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.turno{
+    color: white;
+    padding-top: 1em;
+    padding-left: 1em;
+    font-size: 25px;
+}
+
+.turno-1:before,
+.turno-0:before{
+    content: '';
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: .5em;
+}
+
+.turno-1:before { background-color: red;}
+.turno-0:before{ background-color: blue;}
 
 .wrapper{ padding: 1rem 5rem; }
 
@@ -41,8 +67,8 @@ body{
     font-family: "Liberation Serif";
     color: white;
 }
-.jugador-0::before,
-.jugador-1::before{
+.jugador-blue::before,
+.jugador-red::before{
     content: '';
     display: inline-block;
     width: 15px;
@@ -51,8 +77,8 @@ body{
     margin-right: 10px;
 }
 
-.jugador-0::before{ background-color: transparent; }
-.jugador-1::before{ background-color: brown; }
+.jugador-blue::before{ background-color: blue; }
+.jugador-red::before{ background-color: red; }
 
 .btn{
     background-color: transparent;

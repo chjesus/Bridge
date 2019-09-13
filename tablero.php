@@ -11,12 +11,12 @@
         public $tamano;
         public $turno;    	
     	
-        public function __construct($tamano,$a,$turno)
+        public function __construct($tamano,$a)
     	{
             $this->tamano=$tamano;
             $this->m[$tamano][$tamano] =$a;
             $this->m1[$tamano][$tamano] =$a;
-            $this->turno=$turno;
+
     	}
 
         function crearTablero(){
@@ -38,9 +38,11 @@
                     $this->m1[$i][$j] = $this->m[$i][$j];
                 }
             }
+            $_SESSION['Tablero'] = $this->m;
         } // fin de creación de tablero
 
         function imprimirTablero(){
+            $this->m = $_SESSION['Tablero'];
             echo "<table>";
                 for ($i=0; $i<$this->tamano ; $i++){
                     echo "<tr>";
@@ -68,6 +70,15 @@
 
         } // fin de imprimir
 
+        public function pintarJugada($value,$fil,$col){
+            $this->m = $_SESSION['Tablero'];
+
+            if($this->m[$fil][$col] == 0) $this->m[$fil][$col] = $value;
+
+            $_SESSION['Tablero'] = $this->m;
+        }
+
+        /*
         function jugada($turno,$i,$j){
 
             if($this->m[$i][$j]==0){
@@ -89,18 +100,6 @@
             //Tablero::imprimirTablero();
         }
 
-
-
-
-
-
-
+        */
     } // fin de clase
-
-
-
-
-
-
-	
 ?>
