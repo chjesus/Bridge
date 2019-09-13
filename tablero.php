@@ -20,13 +20,13 @@
             for ($i=0; $i <$this->tamano ; $i++) { 
                 for ($j=0; $j <$this->tamano; $j++) {
                     if ($i%2==0) {
-                        if ($j%2==0) {
+                        if ($j%2==1) {
                             $this->m[$i][$j]=0; // color marrón
                         }else{
                             $this->m[$i][$j]=1; // color rojo
                         }
                     }else{
-                        if ($j%2==0) {
+                        if ($j%2==1) {
                             $this->m[$i][$j]=2;  // color azul                         
                         }else{
                             $this->m[$i][$j]=0;  // color marrón                         
