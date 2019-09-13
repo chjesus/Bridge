@@ -19,7 +19,7 @@
         function crearTablero(){
             for ($i=0; $i <$this->tamano ; $i++) { 
                 for ($j=0; $j <$this->tamano; $j++) {
-                    if ($i%2==0) {
+                    if ($i%2==1) {
                         if ($j%2==1) {
                             $this->m[$i][$j]=0; // color marrón
                         }else{
@@ -62,9 +62,26 @@
         public function pintarJugada($value,$fil,$col){
             $this->m = $_SESSION['Tablero'];
 
-            if($this->m[$fil][$col] == 0) $this->m[$fil][$col] = $value;
+            if($this->m[$fil][$col] == 0){
+                $this->m[$fil][$col] = $value;
+                $_SESSION['Tablero'] = $this->m;
+                return true;
+            }
 
-            $_SESSION['Tablero'] = $this->m;
+            return false;
+
+        }
+
+        public function  validarJuego($fil,$col,$validation){
+            $this->m = $_SESSION['Tablero'];
+            for($i = 1;$i<($_SESSION['tamano'])/2;$i++){
+                if($validation){
+                    if($this->m[$_SESSION['tamano']-1][$i+$i] == 1) return true;
+                }else{
+                    if($this->m[$i+$i][$_SESSION['tamano']-1] == 2) return true;
+                }
+            }
+            return false;
         }
 
     } // fin de clase

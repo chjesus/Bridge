@@ -54,7 +54,7 @@ body{
 .turno-0:before{ background-color: blue;}
 
 .wrapper{ padding: 1rem 5rem; }
-
+.winer{ color: white;}
 .jugador{
     text-align: left;
     font-size: 22px;

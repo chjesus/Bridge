@@ -16,11 +16,19 @@
         $_SESSION['turno'] = 1;
     }else{
         if($_SESSION['turno'] == 1){
-            $tab->pintarJugada(1,$_POST['fila'],$_POST['columna']);
-            $_SESSION['turno'] = 0;
+            if($tab->pintarJugada(1,$_POST['fila'],$_POST['columna'])){
+                if($tab->validarJuego($_POST['fila'],$_POST['columna'],true)){
+                    $_SESSION['win'] = true;
+                }
+                $_SESSION['turno'] = 0;
+            }
         }else{
-            $tab->pintarJugada(2,$_POST['fila'],$_POST['columna']);
-            $_SESSION['turno'] = 1;
+            if($tab->pintarJugada(2,$_POST['fila'],$_POST['columna'])){
+                if($tab->validarJuego($_POST['fila'],$_POST['columna'],false)){
+                    $_SESSION['win'] = false;
+                }
+                $_SESSION['turno'] = 1;
+            }
         }
     }
 ?>
@@ -36,6 +44,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="winer">Gano el Jugador:
+            <?php if(isset($_SESSION['win'])): ?>
+                <?php $_SESSION['nombreB']?>
+            <?php endif ?>
+                <?php $_SESSION['nombreA']?>
+        </div>
         <div class="container-tablero">
             <?php
                 if($_SESSION['jugar'] == true) $tab->imprimirTablero();
