@@ -71,11 +71,9 @@
             if($this->m[$i][$j]==0){
                  if($turno == 2){
                     $this->m[$i][$j]=2;
-                    $turno = 1;
                 }
                 else if($turno == 1){
                     $this->m[$i][$j]=1;
-                    $turno = 2;
                 }
                 return $turno;
             }
@@ -84,7 +82,6 @@
             }
          
             $this->m1[$i][$j] = $this->m[$i][$j];
-            //Tablero::imprimirTablero();
         }
 
 

@@ -13,9 +13,6 @@
     if(!isset($_SESSION["turno"])){
         $_SESSION["turno"]=1; // comienza el jugador B
     }
-    else{
-        //$t = $_SESSION["turno"];
-    }
 
     if( isset($_SESSION["tablero"]) ){
         $tab = $_SESSION["tablero"];        
@@ -68,8 +65,12 @@
             
             $_SESSION["turno"] = $tab->jugada($_SESSION["turno"],$_POST["fila"],$_POST["columna"]);
             
-            //$_SESSION["turno"] = $t;           
-            //echo "turnooooo:",$t;
+            if($_SESSION["turno"] == 1){
+                $_SESSION["turno"]=2;
+            }         
+            else{
+                $_SESSION["turno"]=1;
+            }
            
             $tab->imprimirTablero();
 
