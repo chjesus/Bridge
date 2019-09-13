@@ -6,8 +6,9 @@
 		unset($_SESSION["tamano"]);
 		unset($_SESSION["tablero"]);
 		unset($_SESSION['jugar']);
-	}
 
+	}
+    session_destroy();
 	header("location:index.php");
 	die();
 ?>

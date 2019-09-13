@@ -36,8 +36,8 @@ body{
     height: 30px;
 }
 .casillas--0{ background-color: saddlebrown; }
-.casillas--1{ background-color: red; }
-.casillas--2{ background-color: blue; }
+.casillas--1,.casillas--3{ background-color: red; }
+.casillas--2,.casillas--4{ background-color: blue; }
 .casillas--9{ background-color: transparent; }
 
 .turno-1:before,

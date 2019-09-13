@@ -76,13 +76,73 @@
             $this->m = $_SESSION['Tablero'];
             for($i = 1;$i<($_SESSION['tamano'])/2;$i++){
                 if($validation){
-                    if($this->m[$_SESSION['tamano']-1][$i+$i] == 1) return true;
+                    if($this->m[$_SESSION['tamano']-1][$i+$i] == 1) return $this->validationVertical($fil,$col,1,3);
+                    if($this->validarCaminos(1,3)) return true;
                 }else{
-                    if($this->m[$i+$i][$_SESSION['tamano']-1] == 2) return true;
+                    if($this->m[$i+$i][$_SESSION['tamano']-1] == 2) return $this->validationHorizontal($fil,$col,2,4);
+                    if($this->validarCaminos(2,4)) return true;
                 }
             }
             return false;
         }
 
+        public function validarCaminos($comp,$newComp){
+            $this->m = $_SESSION['Tablero'];
+
+            for($i = $_SESSION['tamano'];$i>0;$i--){
+                for($j = $_SESSION['tamano'];$j>0;$j--){
+                    if($this->m[$i][$j] == $newComp){
+                        if($this->m[$i-1][$j] == $comp) return $this->validationVertical($i-1,$j,$comp,$newComp);
+                        if($this->m[$i+1][$j] == $comp) return $this->validationVertical($i+1,$j,$comp,$newComp);
+                        if($this->m[$i][$j-1] == $comp) return $this->validationVertical($i,$j-1,$comp,$newComp);
+                        if($this->m[$i][$j+1] == $comp) return $this->validationVertical($i,$j+1,$comp,$newComp);
+                    }
+                }
+            }
+        }
+        public function validationVertical($fil,$col,$comp,$newComp){
+            $this->m = $_SESSION['Tablero'];
+            if($fil == 1 && $this->m[$fil][$col] == $comp) return true;
+
+            if($this->m[$fil][$col] == $comp){
+                $this->m[$fil][$col] = $newComp;
+                $_SESSION['Tablero'] = $this->m;
+                if($this->m[$fil-1][$col] == $comp) return $this->validationVertical($fil-1,$col,$comp,$newComp);
+                if($this->m[$fil][$col-1] == $comp) return $this->validationHorizontal($fil,$col-1,$comp,$newComp);
+                if($this->m[$fil][$col+1] == $comp) return $this->validationHorizontal($fil,$col+1,$comp,$newComp);
+            }
+
+            $fil++;
+            if($this->m[$fil][$col] == $comp || $this->m[$fil][$col] == $newComp){
+                $this->m[$fil][$col] = $newComp;
+                $_SESSION['Tablero'] = $this->m;
+                if($this->m[$fil][$col-1] == $comp) return $this->validationHorizontal($fil,$col-1,$comp,$newComp);
+                if($this->m[$fil][$col+1] == $comp) return $this->validationHorizontal($fil,$col+1,$comp,$newComp);
+                if($this->m[$fil+1][$col] == $comp) return $this->validationVertical($fil+1,$col,$comp,$newComp);
+            }
+            return false;
+        }
+        public function validationHorizontal($fil,$col,$comp,$newComp){
+            $this->m = $_SESSION['Tablero'];
+            if(($fil == 1 && $this->m[$fil][$col] == $comp) || ($col == 1 && $this->m[$fil][$col] == 2)) return true;
+
+            if($this->m[$fil][$col] == $comp || $this->m[$fil][$col] == $newComp){
+                $this->m[$fil][$col] = $newComp;
+                $_SESSION['Tablero'] = $this->m;
+                if($this->m[$fil][$col-1] == $comp) return $this->validationHorizontal($fil,$col-1,$comp,$newComp);
+                if($this->m[$fil-1][$col] == $comp) return $this->validationVertical($fil-1,$col,$comp,$newComp);
+                if($this->m[$fil+1][$col] == $comp) return $this->validationVertical($fil+1,$col,$comp,$newComp);
+            }
+
+            $col++;
+            if($this->m[$fil][$col] == $comp || $this->m[$fil][$col] == $newComp){
+                $this->m[$fil][$col] = $newComp;
+                $_SESSION['Tablero'] = $this->m;
+                if($this->m[$fil][$col+1] == $comp) return $this->validationHorizontal($fil,$col+1,$comp,$newComp);
+                if($this->m[$fil+1][$col] == $comp) return $this->validationVertical($fil+1,$col,$comp,$newComp);
+                if($this->m[$fil-1][$col] == $comp) return $this->validationVertical($fil-1,$col,$comp,$newComp);
+            }
+            return false;
+        }
     } // fin de clase
 ?>
