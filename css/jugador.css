@@ -1,17 +1,3 @@
-.casillas{
-    width: 30px;
-    height: 30px;
-}
-.casillas--0{
-    background-color: saddlebrown;
-}
-.casillas--1{
-    background-color: red;
-}
-.casillas--2{
-    background-color: blue;
-}
-
 *{
     padding: 0;
     margin: 0;
@@ -24,15 +10,59 @@ body{
     justify-content: center;
     align-items: center;
 }
-form{
+.container{
     display: flex;
+    background-color: #17202A;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+.container-tablero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.wrapper{ padding: 1rem 5rem; }
+.turno{
+    color: white;
+    padding-top: 1em;
+    padding-left: 1em;
+    font-size: 25px;
+}
+.casillas{
+    width: 30px;
+    height: 30px;
+}
+.casillas--0{ background-color: saddlebrown; }
+.casillas--1,.casillas--3{ background-color: red; }
+.casillas--2,.casillas--4{ background-color: blue; }
+.casillas--9{ background-color: transparent; }
 
-.jugador{ text-align: left; }
-.jugador-0::before,
-.jugador-1::before{
+.turno-1:before,
+.turno-0:before{
+    content: '';
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: .5em;
+}
+
+.turno-1:before { background-color: red;}
+.turno-0:before{ background-color: blue;}
+
+.wrapper{ padding: 1rem 5rem; }
+.winer{ color: white;}
+.jugador{
+    text-align: left;
+    font-size: 22px;
+    font-family: "Liberation Serif";
+    color: white;
+}
+.jugador-blue::before,
+.jugador-red::before{
     content: '';
     display: inline-block;
     width: 15px;
@@ -41,8 +71,28 @@ form{
     margin-right: 10px;
 }
 
-.jugador-0::before{ background-color: transparent; }
-.jugador-1::before{ background-color: brown; }
+.jugador-blue::before{ background-color: blue; }
+.jugador-red::before{ background-color: red; }
+
+.btn{
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-prymary{
+    background-color:green;
+    padding: .5rem 2rem .7rem;
+    color: white;
+    font-size: 25px;
+    border-radius: 5px;
+    box-shadow: inset 0 -.2rem rgba(0,0,0,.5);
+    transition: all .3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: .5rem;
+}
 
 input{
     background-color: red;
