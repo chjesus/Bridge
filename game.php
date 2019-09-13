@@ -1,36 +1,31 @@
 <?php
+    include('tablero.php');
     session_start();
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     
-    include('tablero.php');
 
-    if(!isset($_SESSION["tablero"])){ // si el tamaño no esta definido se envía de nuevo al form
-        header("location:view.php");
+    if(!isset($_SESSION["tamano"])){ // si el tamaño no esta definido se envía de nuevo al form
+        header("location:view.php");    // aunque en realidad ésto está de más
         die();
     }
 
-    /*if(isset($_SESSION['validar'])){
-        echo "prueba3";
-        $_SESSION['tablero'] = $_POST['length'];
-        unset($_SESSION['validar']);
-        echo "prueba4";
-    }*/
-
-
-    /*if(isset($_SESSION['tablero'])){ // Redirecciona
-        $_SESSION['conf'] = true;
-        header('location:http://localhost/~rah/Bridge/game.php');
-    }else{
-        if($_SESSION['conf'] == false) header('location:http://localhost/~rah/Bridge');
+    if(!isset($_SESSION["turno"])){
+        $_SESSION["turno"]=1; // comienza el jugador B
+    }
+    else{
+        //$t = $_SESSION["turno"];
     }
 
-    if(isset($_SESSION['tablero'])){ // rompe la sección
-        $_SESSION['conf'];
-        unset($_SESSION['tablero']);
-        header(url);
-    }*/
-
+    if( isset($_SESSION["tablero"]) ){
+        $tab = $_SESSION["tablero"];        
+        //echo "Existe tablero";
+    }
+    else{
+        //echo "No existe tablero";
+        $tab = New tablero($_SESSION["tamano"],0,$_SESSION["turno"]);
+    } 
+   
 ?>
 
 <!doctype html>
@@ -44,6 +39,16 @@
 </head>
 <body>
 
+    <script type="text/javascript">
+    function mover(i,j,turno) 
+    {
+       document.form.fila.value=i;
+       document.form.columna.value=j;
+       document.form.turno.value=turno;
+       document.form.submit();
+    }
+    </script>
+
     <div class="jugadorA">
         <?php echo "Jugador A:",$_SESSION["nombreA"],"<br>"?>
     </div>
@@ -54,17 +59,41 @@
   
     
     <div class="proceso">
-        <?php
+        <?php  
 
             // tab es objeto de clase tablero
-            $tab = New tablero($_SESSION["tablero"],0);
+            //$tab = New tablero($_SESSION["tablero"],0,$_SESSION["turno"]);
             $tab->crearTablero();
-            $tab->imprimirTablero(); 
+            $tab->imprimirTablero();
+            
+            $_SESSION["turno"] = $tab->jugada($_SESSION["turno"],$_POST["fila"],$_POST["columna"]);
+            
+            //$_SESSION["turno"] = $t;           
+            //echo "turnooooo:",$t;
+           
+            $tab->imprimirTablero();
 
+            echo "turno:",$_SESSION["turno"];
+            /*for ($i=0; $i <$_SESSION["tamano"] ; $i++) { 
+                for ($j=0; $j <$_SESSION["tamano"] ; $j++) { 
+                    $_SESSION["tableroAux"][$i][$j] = $tab->m[$i][$j];
+                }   
+            }*/
+
+            $_SESSION["tablero"] = $tab;
+            
         ?>
     </div>
 
     <div><a href="cerrar.php" class="juegoNuevo" >Iniciar juego nuevo</a></div>
+
+
+    <form name="form" action="" method="POST">
+        <input name="fila" type="hidden" value="">
+        <input name="columna" type="hidden" value="">
+        <input name="turno" type="hidden" value="">
+    </form>
+
 
 
 </body>

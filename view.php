@@ -16,7 +16,7 @@
         <div class="container">
             <input type="text" name="name-a" id="name-a" placeholder="Nombre del Jugador A" value="<?php if(isset($nameA)) echo $nameA; ?>">
             <input type="text" name="name-b" id="name-b" placeholder="Nombre del Jugador B" value="<?php if(isset($nameB)) echo $nameB; ?>">
-            <input type="text" name="length" id="length" placeholder="Tamano del Tablero" value="<?php if(isset($tam)) echo $tam; ?>">
+            <input type="text" name="length" id="length" placeholder="Tamano del Tablero    " value="<?php if(isset($tam)) echo $tam; ?>">
         </div>
         <div class="information">
             <?php if(!empty($error)): ?>

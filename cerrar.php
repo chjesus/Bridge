@@ -1,8 +1,9 @@
 <?php session_start();
 	
-	if(isset($_SESSION["tablero"])){
+	if(isset($_SESSION["tamano"])){
 		unset($_SESSION["nombreA"]);
 		unset($_SESSION["nombreB"]);
+		unset($_SESSION["tamano"]);
 		unset($_SESSION["tablero"]);
 	}
 
