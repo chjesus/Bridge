@@ -46,22 +46,28 @@
 
         function imprimirTablero(){ 
             echo "<table>";
-            for ($i=0; $i<$this->tamano ; $i++){ 
-                echo "<tr>";
-              for ($j=0; $j<$this->tamano ; $j++) {     
-                    if($this->m[$i][$j]==0){
-                        echo "<td><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Marron.png' width='30px' heigth='30px'/></a></td>";
+                for ($i=0; $i<$this->tamano ; $i++){
+                    echo "<tr>";
+                    for($j = 0; $j<$this->tamano;$j++){
+                        $number = $this->m[$i][$j];
+                        echo "<th class='casillas casillas--$number' data-row='$i' data-col='$j'></th>";
                     }
-                    if($this->m[$i][$j]==1){
-                        echo "<td><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Rojo.png' width='30px' heigth='30px'/></a></td>";
-
-                    }
-                    if($this->m[$i][$j]==2){
-                        echo "<td><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Azul.png' width='30px' heigth='30px'/></a></td>";
-                    }
+                    /*for ($j=0; $j<$this->tamano ; $j++) {
+                        if($this->m[$i][$j]==0){
+                            //echo "<th><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Marron.png' width='30px' heigth='30px'/></a></th>";
+                            echo "<th><img src='img/Marron.png' width='30px' heigth='30px'/></th>";
+                        }
+                        if($this->m[$i][$j]==1){
+                            //echo "<th><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Rojo.png' width='30px' heigth='30px'/></a></th>";
+                            echo "<th><img src='img/Rojo.png' width='30px' heigth='30px'/></th>";
+                        }
+                        if($this->m[$i][$j]==2){
+                            //echo "<th><a onclick='mover(".$i.",".$j.",$this->turno)'><img src='img/Azul.png' width='30px' heigth='30px'/></a></th>";
+                            echo "<th><img src='img/Azul.png' width='30px' heigth='30px'/></th>";
+                        }
+                    }*/
+                    echo "</tr>";
                 }
-                echo "</tr>";
-            }
             echo "</table>";
 
         } // fin de imprimir

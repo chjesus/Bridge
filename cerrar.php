@@ -5,8 +5,9 @@
 		unset($_SESSION["nombreB"]);
 		unset($_SESSION["tamano"]);
 		unset($_SESSION["tablero"]);
+		unset($_SESSION['jugar']);
 	}
 
-	header("location:view.php");
+	header("location:index.php");
 	die();
 ?>
