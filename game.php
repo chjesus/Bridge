@@ -18,13 +18,15 @@
         if($_SESSION['turno'] == 1){
             if($tab->pintarJugada(1,$_POST['fila'],$_POST['columna'])){
                 if($tab->validarJuego($_POST['fila'],$_POST['columna'],true)){
-                    $_SESSION['winA'] = true;
+                    $_SESSION['winB'] = true;
+                    $_SESSION['turno'] = 2;
                 }else $_SESSION['turno'] = 0;
             }
-        }else{
+        }else if($_SESSION['turno'] == 0){
             if($tab->pintarJugada(2,$_POST['fila'],$_POST['columna'])){
                 if($tab->validarJuego($_POST['fila'],$_POST['columna'],false)){
-                    $_SESSION['winB'] = true;
+                    $_SESSION['winA'] = true;
+                    $_SESSION['turno'] = 2;
                 }else $_SESSION['turno'] = 1;
             }
         }
