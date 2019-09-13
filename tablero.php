@@ -21,30 +21,26 @@
 
         function crearTablero(){
             for ($i=0; $i <$this->tamano ; $i++) { 
-              for ($j=0; $j <$this->tamano; $j++) { 
+                for ($j=0; $j <$this->tamano; $j++) {
                     if ($i%2==0) {
                         if ($j%2==0) {
                             $this->m[$i][$j]=0; // color marrón
-                        }
-                        else{                           
+                        }else{
                             $this->m[$i][$j]=1; // color rojo
                         }
-                    }
-                    else{
+                    }else{
                         if ($j%2==0) {
                             $this->m[$i][$j]=2;  // color azul                         
-                        }
-                        else{
+                        }else{
                             $this->m[$i][$j]=0;  // color marrón                         
                         }
                     }
                     $this->m1[$i][$j] = $this->m[$i][$j];
                 }
             }
-
         } // fin de creación de tablero
 
-        function imprimirTablero(){ 
+        function imprimirTablero(){
             echo "<table>";
                 for ($i=0; $i<$this->tamano ; $i++){
                     echo "<tr>";
